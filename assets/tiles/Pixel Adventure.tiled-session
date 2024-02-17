@@ -1,0 +1,138 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Level-01.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.21,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 313.22314049586777,
+                "y": 217.76859504132236
+            }
+        },
+        "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Pixel Adventure.tsx": {
+            "scaleInDock": 1
+        },
+        "Level-01 copy.tmx": {
+            "scale": 1.71,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.4678362573099,
+                "y": 184.21052631578948
+            }
+        },
+        "Level-01.tmx": {
+            "expandedObjectLayers": [
+                3,
+                4
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 359.33333333333326,
+                "y": 246.66666666666669
+            }
+        },
+        "Level-02.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5136,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 305.89323467230446,
+                "y": 211.41649048625794
+            }
+        },
+        "Level-02.tmx.bak.tmx": {
+            "scale": 1.71,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.7602339181286,
+                "y": 184.7953216374269
+            }
+        },
+        "Level-03.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.548,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 311.3695090439276,
+                "y": 186.69250645994833
+            }
+        },
+        "Level-04.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.6414,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 294.87023272815884,
+                "y": 196.17399780675032
+            }
+        },
+        "Pixel Adventure.tsx": {
+            "scaleInDock": 1.0396,
+            "scaleInEditor": 1
+        },
+        "template.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5358,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 321.65646568563614,
+                "y": 197.29131397317357
+            }
+        }
+    },
+    "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Terrain",
+    "map.height": 23,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
+    "openFiles": [
+        "Pixel Adventure.tsx",
+        "Level-02.tmx",
+        "Level-02.tmx.bak.tmx",
+        "Level-01.tmx"
+    ],
+    "project": "Pixel Adventure.tiled-project",
+    "property.type": "float",
+    "recentFiles": [
+        "template.tmx",
+        "Level-04.tmx",
+        "Level-03.tmx",
+        "Level-02.tmx.bak.tmx",
+        "Pixel Adventure.tsx",
+        "Level-02.tmx",
+        "Level-01.tmx",
+        "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx",
+        "Level-01 copy.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
