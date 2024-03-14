@@ -15,9 +15,7 @@ void main() async {
   await Flame.device.fullScreen();
   await Flame.device.setLandscape();
 
-  //PixelAdventure game = PixelAdventure();
   runApp(
-    //GameWidget(game: kDebugMode ? PixelAdventure() : game),
     const MyApp()
   );
 }

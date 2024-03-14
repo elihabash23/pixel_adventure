@@ -21,24 +21,17 @@ class PixelAdventure extends FlameGame
         DragCallbacks,
         HasCollisionDetection,
         TapCallbacks {
-  //PixelAdventure({super.children, required this.player});
-
-  //Player player = Player(character: Character.maskDude);
 
   @override
   Color backgroundColor() => const Color(0xFF211F30);
   late CameraComponent cam;
-  //Player player = Player(character: 'Pink Man');
   late Player player;
   Character character = Character.pinkMan;
   GameManager gameManager = GameManager();
   late JoystickComponent joystick;
   bool showControls = !kIsWeb && (Platform.isAndroid || Platform.isIOS);
-  // bool showControls = true;
   bool playSounds = true;
   double soundVolume = 1.0;
-  //List<String> levelNames = ['Level-04', 'Level-03', 'Level-02', 'Level-01'];
-  int currentLevelIndex = 0; // was 0
   LevelManager levelManager = LevelManager();
 
   @override
@@ -57,14 +50,6 @@ class PixelAdventure extends FlameGame
   @override
   void update(double dt) {
     super.update(dt);
-
-    //overlays.add('mainMenuOverlay');
-    //overlays.remove('mainMenuOverlay');
-
-    //  Future.delayed(const Duration(seconds: 6), () {
-    //   // switch level
-    //   overlays.add('gameOverlay');
-    // });
 
     if (gameManager.isPickLevel) {
       overlays.add('levelOverlay');
@@ -85,9 +70,9 @@ class PixelAdventure extends FlameGame
     }
 
     if (gameManager.isPlaying) {
-      if (showControls) {
-        //updateJoyStick();
-      }
+      // if (showControls) {
+      //   //updateJoyStick();
+      // }
 
       if (gameManager.livesRemaining.value == 0) {
         onLose();
@@ -104,24 +89,18 @@ class PixelAdventure extends FlameGame
   void setLevel() {
     gameManager.state = GameState.pickLevel;
     overlays.remove('mainMenuOverlay');
-    //overlays.add('levelOverlay');
   }
 
   void startGame() {
-    //overlays.remove('levelOverlay');
-    //_loadLevel();
     loadNextLevel();
     initializeGameStart();
     gameManager.state = GameState.playing;
-    //overlays.remove('mainMenuOverlay');
     overlays.remove('levelOverlay');
   }
 
   void resetGame() {
     startGame();
     overlays.remove('gameOverOverlay');
-    // gameManager.state = GameState.playing;
-    // _loadLevel();
   }
 
   void quitGame() {
@@ -140,7 +119,6 @@ class PixelAdventure extends FlameGame
     player = Player(
       character: gameManager.character,
     );
-    //add(player);
   }
 
   void pressJump() {
@@ -148,15 +126,6 @@ class PixelAdventure extends FlameGame
   }
 
   void loadNextLevel() {
-    // if (currentLevelIndex < levelNames.length - 1) {
-    //   currentLevelIndex++;
-    //   _loadLevel();
-    // } else {
-    //   // no more levels, game finishes
-    //   currentLevelIndex = 0;
-    //   _loadLevel();
-    // }
-
     levelManager.increaseLevel();
     _loadLevel();
   }

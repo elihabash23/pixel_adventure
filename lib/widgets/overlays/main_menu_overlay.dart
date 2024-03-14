@@ -83,10 +83,7 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                       child: ElevatedButton(
                         onPressed: () async {
                           game.gameManager.selectCharacter(character);
-                          // game.levelManager.selectLevel(selectLevel);
                           game.setLevel();
-                          //game.startGame();
-                          // game.selectCharacter(character);
                         },
                         style: ButtonStyle(
                           minimumSize: MaterialStateProperty.all(

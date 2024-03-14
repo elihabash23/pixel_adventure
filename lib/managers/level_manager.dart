@@ -27,10 +27,6 @@ class LevelManager extends Component with HasGameRef<PixelAdventure> {
 
   Map<int, String> get levels => (levelsConfig);
 
-  // Map<String, Difficulty> get levels = {
-
-  // }
-
   void increaseLevel() {
     if (level < levelsConfig.keys.length) {
       level++;
@@ -39,12 +35,6 @@ class LevelManager extends Component with HasGameRef<PixelAdventure> {
       level = 0;
     }
   }
-
-  // void setLevel(int newLevel) {
-  //   if (levelsConfig.containsKey(newLevel)) {
-  //     level = newLevel;
-  //   }
-  // }
 
   void selectLevel(int selectLevel) {
     if (levelsConfig.containsKey(selectLevel)) {
