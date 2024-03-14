@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
-enum GameState { intro, playing, gameOver }
+enum GameState { intro, playing, gameOver, pickLevel }
 
 class GameManager extends Component with HasGameRef<PixelAdventure> {
   GameManager();
@@ -16,6 +16,7 @@ class GameManager extends Component with HasGameRef<PixelAdventure> {
   bool get isPlaying => state == GameState.playing;
   bool get isGameOver => state == GameState.gameOver;
   bool get isIntro => state == GameState.intro;
+  bool get isPickLevel => state == GameState.pickLevel;
 
     void reset() {
     score.value = 0;

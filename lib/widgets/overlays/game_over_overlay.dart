@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
-import 'package:pixel_adventure/widgets/main_menu_overlay.dart';
-import 'package:pixel_adventure/widgets/score_display.dart';
+import 'package:pixel_adventure/widgets/overlays/main_menu_overlay.dart';
+import 'package:pixel_adventure/widgets/displays/score_display.dart';
 
 class GameOverOverlay extends StatelessWidget {
   const GameOverOverlay(this.game, {super.key});

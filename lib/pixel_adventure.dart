@@ -37,8 +37,8 @@ class PixelAdventure extends FlameGame
   // bool showControls = true;
   bool playSounds = true;
   double soundVolume = 1.0;
-  List<String> levelNames = ['Level-04', 'Level-03', 'Level-02', 'Level-01'];
-  int currentLevelIndex = -1; // was 0
+  //List<String> levelNames = ['Level-04', 'Level-03', 'Level-02', 'Level-01'];
+  int currentLevelIndex = 0; // was 0
   LevelManager levelManager = LevelManager();
 
   @override
@@ -47,20 +47,10 @@ class PixelAdventure extends FlameGame
     // load all images into cache
     await images.loadAllImages();
 
-    // _loadLevel();
-
     await add(gameManager);
 
     await add(levelManager);
 
-    //overlays.add('gameOverlay');
-
-    //  startGame();
-
-    if (showControls) {
-      //addJoyStick();
-      //addJumpButton();
-    }
     return super.onLoad();
   }
 
@@ -76,17 +66,22 @@ class PixelAdventure extends FlameGame
     //   overlays.add('gameOverlay');
     // });
 
-    if (gameManager.isPlaying) {
-      overlays.add('gameOverlay');
-    }
-
-    if (gameManager.isGameOver) {
+    if (gameManager.isPickLevel) {
+      overlays.add('levelOverlay');
       return;
     }
 
     if (gameManager.isIntro) {
       overlays.add('mainMenuOverlay');
       return;
+    }
+
+    if (gameManager.isGameOver) {
+      return;
+    }
+
+    if (gameManager.isPlaying) {
+      overlays.add('gameOverlay');
     }
 
     if (gameManager.isPlaying) {
@@ -98,10 +93,6 @@ class PixelAdventure extends FlameGame
         onLose();
       }
     }
-
-    // if (showControls) {
-    //   updateJoyStick();
-    // }
   }
 
   void initializeGameStart() {
@@ -110,12 +101,20 @@ class PixelAdventure extends FlameGame
     levelManager.reset();
   }
 
+  void setLevel() {
+    gameManager.state = GameState.pickLevel;
+    overlays.remove('mainMenuOverlay');
+    //overlays.add('levelOverlay');
+  }
+
   void startGame() {
+    //overlays.remove('levelOverlay');
     //_loadLevel();
     loadNextLevel();
     initializeGameStart();
     gameManager.state = GameState.playing;
-    overlays.remove('mainMenuOverlay');
+    //overlays.remove('mainMenuOverlay');
+    overlays.remove('levelOverlay');
   }
 
   void resetGame() {
@@ -149,14 +148,17 @@ class PixelAdventure extends FlameGame
   }
 
   void loadNextLevel() {
-    if (currentLevelIndex < levelNames.length - 1) {
-      currentLevelIndex++;
-      _loadLevel();
-    } else {
-      // no more levels, game finishes
-      currentLevelIndex = 0;
-      _loadLevel();
-    }
+    // if (currentLevelIndex < levelNames.length - 1) {
+    //   currentLevelIndex++;
+    //   _loadLevel();
+    // } else {
+    //   // no more levels, game finishes
+    //   currentLevelIndex = 0;
+    //   _loadLevel();
+    // }
+
+    levelManager.increaseLevel();
+    _loadLevel();
   }
 
   void _loadLevel() {
@@ -167,8 +169,7 @@ class PixelAdventure extends FlameGame
       () {
         Level world = Level(
           player: player,
-          //player: Player(character: Character.maskDude),
-          levelName: levelNames[currentLevelIndex],
+          levelName: levelManager.levels[levelManager.level] ?? "Level-02",
         );
 
         cam = CameraComponent.withFixedResolution(
@@ -187,58 +188,4 @@ class PixelAdventure extends FlameGame
       pauseEngine();
     }
   }
-
-    // void addJoyStick() {
-  //   joystick = JoystickComponent(
-  //       priority: 10,
-  //       knob: SpriteComponent(
-  //         sprite: Sprite(
-  //           images.fromCache('HUD/Knob.png'),
-  //         ),
-  //       ),
-  //       background: SpriteComponent(
-  //         sprite: Sprite(
-  //           images.fromCache('HUD/Joystick.png'),
-  //         ),
-  //       ),
-  //       margin: const EdgeInsets.only(left: 40, bottom: 40));
-
-  //   add(joystick);
-  // }
-
-  // void updateJoyStick() {
-  //   switch (joystick.direction) {
-  //     case JoystickDirection.left:
-  //     case JoystickDirection.upLeft:
-  //     case JoystickDirection.downLeft:
-  //       player.horizontalMovement = -1;
-  //       break;
-  //     case JoystickDirection.right:
-  //     case JoystickDirection.upRight:
-  //     case JoystickDirection.downRight:
-  //       player.horizontalMovement = 1;
-  //       break;
-  //     default:
-  //       // idle
-  //       player.horizontalMovement = 0;
-  //       break;
-  //   }
-  // }
-
-    // void addJumpButton() {
-  //   final jumpButton = HudButtonComponent(
-  //       priority: 1000,
-  //       button: SpriteComponent(
-  //         sprite: Sprite(images.fromCache('HUD/JumpButton.png')),
-  //       ),
-  //       buttonDown: SpriteComponent(
-  //           sprite: Sprite(images.fromCache('HUD/JumpButton.png'))),
-  //       margin: const EdgeInsets.only(
-  //         right: 40,
-  //         bottom: 40,
-  //       ),
-  //       onPressed: pressJump);
-
-  //   add(jumpButton);
-  // }
 }

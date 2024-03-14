@@ -3,9 +3,10 @@ import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
-import 'package:pixel_adventure/widgets/game_over_overlay.dart';
-import 'package:pixel_adventure/widgets/game_overlay.dart';
-import 'package:pixel_adventure/widgets/main_menu_overlay.dart';
+import 'package:pixel_adventure/widgets/overlays/game_over_overlay.dart';
+import 'package:pixel_adventure/widgets/overlays/game_overlay.dart';
+import 'package:pixel_adventure/widgets/overlays/level_overlay.dart';
+import 'package:pixel_adventure/widgets/overlays/main_menu_overlay.dart';
 
 PixelAdventure game = PixelAdventure();
 
@@ -63,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage>{
                 'mainMenuOverlay': (context, game) => MainMenuOverlay(game),
                 'gameOverlay': (context, game) => GameOverlay(game),
                 'gameOverOverlay': (context, game) => GameOverOverlay(game),
+                'levelOverlay': (context, game) => LevelOverlay(game),
               }
             ),
           );

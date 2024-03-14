@@ -76,26 +76,6 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                           },
                           characterWidth: characterWidth,
                         ),
-                        // CharacterButton(
-                        //   character: Character.ninjaFrog,
-                        //   selected: character == Character.ninjaFrog,
-                        //   onSelectChar: () {
-                        //     setState(() {
-                        //       character = Character.ninjaFrog;
-                        //     });
-                        //   },
-                        //   characterWidth: characterWidth,
-                        // ),
-                        // CharacterButton(
-                        //   character: Character.ninjaFrog,
-                        //   selected: character == Character.ninjaFrog,
-                        //   onSelectChar: () {
-                        //     setState(() {
-                        //       character = Character.ninjaFrog;
-                        //     });
-                        //   },
-                        //   characterWidth: characterWidth,
-                        // ),
                       ],
                     ),
                     if (!screenHeightIsSmall) const WhiteSpace(height: 50),
@@ -103,8 +83,10 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                       child: ElevatedButton(
                         onPressed: () async {
                           game.gameManager.selectCharacter(character);
-                          game.startGame();
-                         // game.selectCharacter(character);
+                          // game.levelManager.selectLevel(selectLevel);
+                          game.setLevel();
+                          //game.startGame();
+                          // game.selectCharacter(character);
                         },
                         style: ButtonStyle(
                           minimumSize: MaterialStateProperty.all(
@@ -113,7 +95,7 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                           textStyle: MaterialStateProperty.all(
                               Theme.of(context).textTheme.titleLarge),
                         ),
-                        child: const Text('Start'),
+                        child: const Text('Next'),
                       ),
                     ),
                   ],

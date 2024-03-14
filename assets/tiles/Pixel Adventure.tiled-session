@@ -40,8 +40,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 359.33333333333326,
-                "y": 246.66666666666669
+                "x": 358.6666666666667,
+                "y": 237.33333333333331
             }
         },
         "Level-02.tmx": {
@@ -52,8 +52,8 @@
             "scale": 1.5136,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 305.89323467230446,
-                "y": 211.41649048625794
+                "x": 305.2325581395349,
+                "y": 211.08615221987316
             }
         },
         "Level-02.tmx.bak.tmx": {
@@ -72,8 +72,8 @@
             "scale": 1.548,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 311.3695090439276,
-                "y": 186.69250645994833
+                "x": 310.72351421188625,
+                "y": 186.36950904392768
             }
         },
         "Level-04.tmx": {
@@ -85,7 +85,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 294.87023272815884,
-                "y": 196.17399780675032
+                "y": 195.86937979773361
             }
         },
         "Pixel Adventure.tsx": {
@@ -113,20 +113,22 @@
     "map.width": 40,
     "openFiles": [
         "Pixel Adventure.tsx",
+        "Level-01.tmx",
         "Level-02.tmx",
-        "Level-02.tmx.bak.tmx",
-        "Level-01.tmx"
+        "Level-03.tmx",
+        "Level-04.tmx",
+        "template.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "Pixel Adventure.tsx",
         "template.tmx",
         "Level-04.tmx",
         "Level-03.tmx",
-        "Level-02.tmx.bak.tmx",
-        "Pixel Adventure.tsx",
         "Level-02.tmx",
         "Level-01.tmx",
+        "Level-02.tmx.bak.tmx",
         "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx",
         "Level-01 copy.tmx"
     ],

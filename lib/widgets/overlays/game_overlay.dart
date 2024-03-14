@@ -1,16 +1,15 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:pixel_adventure/widgets/displays/level_display.dart';
 import 'package:pixel_adventure/widgets/joystick.dart';
-import 'package:pixel_adventure/widgets/lives_display.dart';
-import 'package:pixel_adventure/widgets/score_display.dart';
+import 'package:pixel_adventure/widgets/displays/lives_display.dart';
+import 'package:pixel_adventure/widgets/displays/score_display.dart';
 
 class GameOverlay extends StatefulWidget {
   const GameOverlay(this.game, {super.key});
 
   final Game game;
-  static const ballSize = 20.0;
-  static const step = 10.0;
 
   @override
   State<GameOverlay> createState() => _GameOverlayState();
@@ -34,6 +33,11 @@ class _GameOverlayState extends State<GameOverlay> {
             top: 30,
             left: 200,
             child: LivesDisplay(game: widget.game),
+          ),
+          Positioned(
+            top: 30,
+            right: 200,
+            child: LevelDisplay(game: widget.game),
           ),
           Positioned(
             top: 30,
@@ -69,9 +73,9 @@ class _GameOverlayState extends State<GameOverlay> {
                 )),
           ),
           Positioned(
-            bottom: 30,
-            left: 30,
-            child: JoystickExample((widget.game as PixelAdventure).player)),
+              bottom: 30,
+              left: 30,
+              child: JoystickExample((widget.game as PixelAdventure).player)),
           if (isPaused)
             Positioned(
               top: MediaQuery.of(context).size.height / 2 - 72.0,
