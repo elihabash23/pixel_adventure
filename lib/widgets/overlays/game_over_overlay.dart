@@ -43,7 +43,14 @@ class GameOverOverlay extends StatelessWidget {
                   textStyle: MaterialStateProperty.all(
                       Theme.of(context).textTheme.titleLarge),
                 ),
-                child: const Text('Play again'),
+                child: Image.asset(
+                  'assets/images/Menu/Buttons/Restart.png',
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+              const WhiteSpace(
+                height: 50,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -57,7 +64,7 @@ class GameOverOverlay extends StatelessWidget {
                       Theme.of(context).textTheme.titleLarge),
                 ),
                 child: const Text('Main Menu'),
-              )
+              ),
             ],
           ),
         ),

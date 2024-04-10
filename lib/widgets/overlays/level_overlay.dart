@@ -43,6 +43,7 @@ class _LevelOverlayState extends State<LevelOverlay> {
                 for (var i in game.levelManager.levels.keys)
                   LevelButton(
                     number: i,
+                    image: "assets/images/Menu/Levels/01.png",
                     selected: count == i,
                     onSelectLevel: () {
                     setState(() {

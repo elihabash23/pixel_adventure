@@ -78,6 +78,9 @@ flutter:
     - assets/images/Main Characters/Virtual Guy/
     - assets/images/HUD/
     - assets/images/Enemies/Chicken/
+    - assets/images/Menu/Buttons/
+    - assets/images/Menu/Levels/
+    - assets/images/Menu/Text/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

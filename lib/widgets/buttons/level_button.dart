@@ -5,10 +5,12 @@ class LevelButton extends StatelessWidget {
       {super.key,
       this.selected = false,
       required this.number,
+      required this.image,
       required this.onSelectLevel});
 
   final bool selected;
   final int number;
+  final String image;
   final void Function() onSelectLevel;
 
   @override
@@ -24,9 +26,10 @@ class LevelButton extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Text(
-              number.toString(),
-              style: const TextStyle(fontSize: 20),
+            Image.asset(
+              image,
+              height: 30,
+              width: 30,
             ),
           ],
         ),
