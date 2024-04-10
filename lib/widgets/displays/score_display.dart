@@ -13,10 +13,14 @@ class ScoreDisplay extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: (game as PixelAdventure).gameManager.score,
       builder: (context, value, child) {
-        return Text(
-          'Score: $value',
-          style: Theme.of(context).textTheme.displaySmall!,
-        );
+        return Text('Score: $value',
+            //style: Theme.of(context).textTheme.displaySmall!,
+            style: const TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontWeight: FontWeight.w900,
+                // fontStyle: FontStyle.italic,
+                fontFamily: 'Open Sans',
+                fontSize: 40));
       },
     );
   }

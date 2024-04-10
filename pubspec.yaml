@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/tiles/
     - assets/audio/
+    - assets/fonts/
     - assets/images/Background/
     - assets/images/Terrain/
     - assets/images/Items/Fruits/
