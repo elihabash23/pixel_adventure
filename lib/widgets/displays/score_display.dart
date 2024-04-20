@@ -16,11 +16,11 @@ class ScoreDisplay extends StatelessWidget {
         return Text('Score: $value',
             //style: Theme.of(context).textTheme.displaySmall!,
             style: const TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 205, 205, 205),
                 fontWeight: FontWeight.w900,
                 // fontStyle: FontStyle.italic,
-                fontFamily: 'Open Sans',
-                fontSize: 40));
+                fontFamily: 'MinecraftEvenings',
+                fontSize: 20));
       },
     );
   }

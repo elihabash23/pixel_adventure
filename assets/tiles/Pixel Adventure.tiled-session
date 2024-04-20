@@ -40,8 +40,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.66666666666663,
-                "y": 184.66666666666666
+                "x": 319.33333333333326,
+                "y": 185
             }
         },
         "Level-02.tmx": {
@@ -50,9 +50,9 @@
                 3
             ],
             "scale": 1.5136,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 305.2325581395349,
+                "x": 253.0391120507399,
                 "y": 211.74682875264267
             }
         },
@@ -70,10 +70,10 @@
                 3
             ],
             "scale": 1.548,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.4134366925065,
-                "y": 184.43152454780363
+                "x": 270.02583979328165,
+                "y": 185.07751937984497
             }
         },
         "Level-04.tmx": {
@@ -82,9 +82,9 @@
                 3
             ],
             "scale": 1.6414,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 321.06738150359445,
+                "x": 272.937736078957,
                 "y": 184.9031314731327
             }
         },
@@ -101,11 +101,11 @@
                 2,
                 3
             ],
-            "scale": 1.5358,
-            "selectedLayer": 2,
+            "scale": 1.53,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.35421278812345,
-                "y": 184.5943482224248
+                "x": 267.97385620915037,
+                "y": 184.64052287581697
             }
         }
     },
@@ -126,15 +126,15 @@
         "Text (White).tsx"
     ],
     "project": "Pixel Adventure.tiled-project",
-    "property.type": "float",
+    "property.type": "string",
     "recentFiles": [
+        "Level-01.tmx",
+        "Level-03.tmx",
         "Pixel Adventure.tsx",
         "Text (White).tsx",
         "template.tmx",
         "Level-04.tmx",
-        "Level-03.tmx",
         "Level-02.tmx",
-        "Level-01.tmx",
         "Level-02.tmx.bak.tmx",
         "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx",
         "Level-01 copy.tmx"

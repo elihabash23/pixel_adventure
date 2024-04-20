@@ -13,10 +13,13 @@ class LevelDisplay extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: (game as PixelAdventure).levelManager.currentLevel,
       builder: (context, value, child) {
-        return Text(
-          'Level: $value',
-          style: Theme.of(context).textTheme.displaySmall!,
-        );
+        return Text('Level: $value',
+            style: const TextStyle(
+                color: Color.fromARGB(255, 205, 205, 205),
+                fontWeight: FontWeight.w900,
+                // fontStyle: FontStyle.italic,
+                fontFamily: 'MinecraftEvenings',
+                fontSize: 20));
       },
     );
   }

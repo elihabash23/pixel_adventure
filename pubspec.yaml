@@ -113,7 +113,6 @@ flutter:
         - asset: assets/fonts/AtariClassicChunky-PxXP.ttf
         - asset: assets/fonts/AtariClassicExtrasmooth-LxZy.ttf
         - asset: assets/fonts/AtariClassicSmooth-XzW2.ttf
-        - asset: assets/fonts/AtariClassicSmooth-XzW2.ttf
     - family: MinecraftEvenings
       fonts:
         - asset: assets/fonts/MinecraftEvenings-lgvPd.ttf
