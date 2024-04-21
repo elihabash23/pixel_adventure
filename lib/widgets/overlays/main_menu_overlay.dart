@@ -21,16 +21,16 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final characterWidth = constraints.maxWidth / 5;
-        final TextStyle titleStyle = (constraints.maxWidth > 830)
-            ? Theme.of(context).textTheme.displayLarge!
-            : Theme.of(context).textTheme.displaySmall!;
+        // final TextStyle titleStyle = (constraints.maxWidth > 830)
+        //     ? Theme.of(context).textTheme.displayLarge!
+        //     : Theme.of(context).textTheme.displaySmall!;
 
         // 760 is the smallest height the browser can have until the
         // layout is too large to fit.
         final bool screenHeightIsSmall = constraints.maxHeight < 760;
 
         return Material(
-          color: Theme.of(context).colorScheme.background,
+          color: Colors.amber, //Theme.of(context).colorScheme.background,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Center(
@@ -39,18 +39,26 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Pixel Adventure',
-                      style: titleStyle.copyWith(
-                        height: .8,
-                      ),
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontWeight: FontWeight.w100,
+                          fontFamily: 'MinecraftEvenings',
+                          fontSize: 50),
                       textAlign: TextAlign.center,
                     ),
                     const WhiteSpace(),
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
-                      child: Text("Choose your Character: ",
-                          style: Theme.of(context).textTheme.headlineSmall!),
+                      child: Text(
+                        "Choose Your Character: ",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w100,
+                            fontFamily: 'MinecraftEvenings',
+                            fontSize: 30),
+                      ),
                     ),
                     if (!screenHeightIsSmall) const WhiteSpace(height: 30),
                     Row(
@@ -133,7 +141,7 @@ class CharacterButton extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/Main Characters/${character.name}/Jump (32x32).png',
+              'assets/images/Main Characters/${character.name}/Jump (96x96).png',
               height: characterWidth,
               width: characterWidth,
             ),

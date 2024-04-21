@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-01.tmx",
+    "activeFile": "Level-04.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -34,14 +34,14 @@
         },
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                3,
-                4
+                4,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.33333333333326,
-                "y": 185
+                "x": 363,
+                "y": 224
             }
         },
         "Level-02.tmx": {
@@ -52,8 +52,8 @@
             "scale": 1.5136,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 253.0391120507399,
-                "y": 211.74682875264267
+                "x": 319.7674418604651,
+                "y": 184.65909090909088
             }
         },
         "Level-02.tmx.bak.tmx": {
@@ -72,8 +72,8 @@
             "scale": 1.548,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 270.02583979328165,
-                "y": 185.07751937984497
+                "x": 319.7674418604651,
+                "y": 184.43152454780363
             }
         },
         "Level-04.tmx": {
@@ -84,7 +84,7 @@
             "scale": 1.6414,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 272.937736078957,
+                "x": 273.5469720969904,
                 "y": 184.9031314731327
             }
         },
@@ -104,13 +104,13 @@
             "scale": 1.53,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 267.97385620915037,
-                "y": 184.64052287581697
+                "x": 312.7450980392157,
+                "y": 168.30065359477126
             }
         }
     },
     "last.externalTilesetPath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Menu/Text",
-    "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Menu/Text",
+    "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Colors",
     "map.height": 23,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
@@ -128,13 +128,13 @@
     "project": "Pixel Adventure.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Level-01.tmx",
-        "Level-03.tmx",
         "Pixel Adventure.tsx",
+        "Level-01.tmx",
+        "Level-02.tmx",
+        "Level-03.tmx",
         "Text (White).tsx",
         "template.tmx",
         "Level-04.tmx",
-        "Level-02.tmx",
         "Level-02.tmx.bak.tmx",
         "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx",
         "Level-01 copy.tmx"
@@ -142,7 +142,7 @@
     "tileset.lastUsedFilter": "All Files (*)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 10,
-        "width": 8
+        "height": 16,
+        "width": 16
     }
 }

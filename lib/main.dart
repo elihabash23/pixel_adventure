@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage>{
           return Container(
             constraints: const BoxConstraints(
               minWidth: 550,
-              maxWidth: 800
+              maxWidth: 1000//800
             ),
             child: GameWidget(
               game: kDebugMode ? PixelAdventure() : game,

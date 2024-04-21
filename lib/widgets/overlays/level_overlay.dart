@@ -21,16 +21,20 @@ class _LevelOverlayState extends State<LevelOverlay> {
     PixelAdventure game = widget.game as PixelAdventure;
 
     return Material(
-      color: Theme.of(context).colorScheme.background,
+      color: Colors.amber, //Theme.of(context).colorScheme.background,
       child: Padding(
         padding: const EdgeInsets.all(48),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Levels',
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontWeight: FontWeight.w100,
+                  fontFamily: 'MinecraftEvenings',
+                  fontSize: 30),
             ),
             const WhiteSpace(
               height: 50,
@@ -42,15 +46,17 @@ class _LevelOverlayState extends State<LevelOverlay> {
               children: [
                 for (var i in game.levelManager.levels.keys)
                   LevelButton(
-                    number: i,
-                    image: "assets/images/Menu/Levels/01.png",
-                    selected: count == i,
-                    onSelectLevel: () {
-                    setState(() {
-                      // Set the level
-                      count = i;
-                    });
-                  })
+                      number: i,
+                      image: i < 10
+                          ? "assets/images/Menu/Levels/0$i.png"
+                          : "assets/images/Menu/Levels/$i.png",
+                      selected: count == i,
+                      onSelectLevel: () {
+                        setState(() {
+                          // Set the level
+                          count = i;
+                        });
+                      })
               ],
             ),
             const WhiteSpace(
