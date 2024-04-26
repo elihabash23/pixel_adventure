@@ -50,14 +50,16 @@ class _GameOverlayState extends State<GameOverlay> {
                 });
               },
               child: isPaused
-                  ? const Icon(
-                      Icons.play_arrow,
-                      size: 48,
+                  ? Image.asset(
+                      'assets/images/Menu/Buttons/Play.png',
+                      height: 48,
+                      width: 48,
                     )
-                  : const Icon(
-                      Icons.pause,
-                      size: 48,
-                    ),
+                  : Image.asset(
+                      'assets/images/Menu/Buttons/Pause.png',
+                      height: 48,
+                      width: 48,
+                    )
             ),
           ),
           Positioned(

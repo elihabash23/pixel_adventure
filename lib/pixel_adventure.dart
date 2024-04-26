@@ -23,7 +23,7 @@ class PixelAdventure extends FlameGame
         TapCallbacks {
 
   @override
-  Color backgroundColor() => const Color(0xFF211F30);
+  Color backgroundColor() => const Color.fromARGB(255, 255, 194, 0);//Color(0xFF211F30);
   late CameraComponent cam;
   late Player player;
   Character character = Character.pinkMan;

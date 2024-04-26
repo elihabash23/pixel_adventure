@@ -40,8 +40,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 363,
-                "y": 224
+                "x": 317,
+                "y": 181.33333333333334
             }
         },
         "Level-02.tmx": {
@@ -52,8 +52,8 @@
             "scale": 1.5136,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.7674418604651,
-                "y": 184.65909090909088
+                "x": 347.1855179704017,
+                "y": 216.04122621564483
             }
         },
         "Level-02.tmx.bak.tmx": {
@@ -72,8 +72,8 @@
             "scale": 1.548,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.7674418604651,
-                "y": 184.43152454780363
+                "x": 270.34883720930236,
+                "y": 185.40051679586563
             }
         },
         "Level-04.tmx": {
@@ -84,8 +84,8 @@
             "scale": 1.6414,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 273.5469720969904,
-                "y": 184.9031314731327
+                "x": 314.6704033142439,
+                "y": 196.78323382478374
             }
         },
         "Pixel Adventure.tsx": {
@@ -105,12 +105,12 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 312.7450980392157,
-                "y": 168.30065359477126
+                "y": 196.078431372549
             }
         }
     },
     "last.externalTilesetPath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Menu/Text",
-    "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Colors",
+    "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Terrain",
     "map.height": 23,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,

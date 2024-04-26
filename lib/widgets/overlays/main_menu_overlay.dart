@@ -48,7 +48,9 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                           fontSize: 50),
                       textAlign: TextAlign.center,
                     ),
-                    const WhiteSpace(),
+                    const WhiteSpace(
+                      height: 20,
+                    ),
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -80,6 +82,26 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                           onSelectChar: () {
                             setState(() {
                               character = Character.maskDude;
+                            });
+                          },
+                          characterWidth: characterWidth,
+                        ),
+                        CharacterButton(
+                          character: Character.pinkMan,
+                          selected: character == Character.pinkMan,
+                          onSelectChar: () {
+                            setState(() {
+                              character = Character.pinkMan;
+                            });
+                          },
+                          characterWidth: characterWidth,
+                        ),
+                        CharacterButton(
+                          character: Character.virtualGuy,
+                          selected: character == Character.virtualGuy,
+                          onSelectChar: () {
+                            setState(() {
+                              character = Character.virtualGuy;
                             });
                           },
                           characterWidth: characterWidth,
@@ -137,13 +159,13 @@ class CharacterButton extends StatelessWidget {
           : null,
       onPressed: onSelectChar,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Image.asset(
               'assets/images/Main Characters/${character.name}/Jump (96x96).png',
-              height: characterWidth,
-              width: characterWidth,
+              height: 100,
+              width: 100,
             ),
             const WhiteSpace(height: 18),
             Text(

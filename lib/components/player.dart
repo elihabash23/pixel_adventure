@@ -218,7 +218,11 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updatePlayerMovement(double dt) {
-    if (hasJumped && (isOnGround || isOnWall || jumpCount < maxJumpps)) {
+    // if (hasJumped && isOnWall) {
+    //   jumpCount = 0;
+    //   _playerJump(dt);
+    // }
+    if (hasJumped && ((isOnGround || isOnWall) || (velocity.y != 0 && jumpCount < maxJumpps))) {
       _playerJump(dt);
     }
 
@@ -249,18 +253,20 @@ class Player extends SpriteAnimationGroupComponent
               velocity.x = 0;
               position.x = block.x - hitbox.offsetX - hitbox.width;
               isOnWall = true;
+              jumpCount = 0;
               break;
             }
             // going left
             if (velocity.x < 0) {
               velocity.x = 0;
-              position.x =
-                  block.x + block.width + hitbox.width + hitbox.offsetX;
+              position.x = block.x + block.width + hitbox.width + hitbox.offsetX;
               isOnWall = true;
+              jumpCount = 0;
               break;
             }
           }
           // need to revert back after touching a wall
+          //jumpCount = 0;
           isOnWall = false;
         } else {
           if (checkCollision(this, block)) {
