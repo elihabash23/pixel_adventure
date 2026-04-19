@@ -1,6 +1,11 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:pixel_adventure/constants/asset_paths.dart';
+import 'package:pixel_adventure/constants/game_constants.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
+import 'package:pixel_adventure/widgets/buttons/animated_game_button.dart';
+import 'package:pixel_adventure/widgets/buttons/character_button.dart';
+import 'package:pixel_adventure/widgets/white_space.dart';
 
 class MainMenuOverlay extends StatefulWidget {
   const MainMenuOverlay(this.game, {super.key});
@@ -15,22 +20,38 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
   Character character = Character.ninjaFrog;
 
   @override
+  void initState() {
+    super.initState();
+    // Load last selected character if available
+    final game = widget.game as PixelAdventure;
+    if (game.saveManager.isInitialized) {
+      final lastCharacter = game.saveManager.getLastSelectedCharacter();
+      if (lastCharacter != null) {
+        try {
+          character = Character.values.firstWhere(
+            (c) => c.name == lastCharacter,
+            orElse: () => Character.ninjaFrog,
+          );
+        } catch (e) {
+          // If parsing fails, keep default
+          character = Character.ninjaFrog;
+        }
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     PixelAdventure game = widget.game as PixelAdventure;
+    final int highScore = game.saveManager.getHighScore();
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final characterWidth = constraints.maxWidth / 5;
-        // final TextStyle titleStyle = (constraints.maxWidth > 830)
-        //     ? Theme.of(context).textTheme.displayLarge!
-        //     : Theme.of(context).textTheme.displaySmall!;
-
-        // 760 is the smallest height the browser can have until the
-        // layout is too large to fit.
-        final bool screenHeightIsSmall = constraints.maxHeight < 760;
+        final characterWidth = constraints.maxWidth / 10;
+        final bool screenHeightIsSmall = constraints.maxHeight < LayoutConstants.smallScreenHeight;
 
         return Material(
-          color: Colors.amber, //Theme.of(context).colorScheme.background,
+          color: Colors.amber,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Center(
@@ -48,6 +69,19 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                           fontSize: 50),
                       textAlign: TextAlign.center,
                     ),
+                    const WhiteSpace(
+                      height: 10,
+                    ),
+                    if (highScore > 0)
+                      Text(
+                        'High Score: $highScore',
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 50, 50, 50),
+                            fontWeight: FontWeight.w100,
+                            fontFamily: 'MinecraftEvenings',
+                            fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
                     const WhiteSpace(
                       height: 20,
                     ),
@@ -110,19 +144,40 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
                     ),
                     if (!screenHeightIsSmall) const WhiteSpace(height: 50),
                     Center(
-                      child: ElevatedButton(
+                      child: AnimatedGameButton(
+                        width: 250,
+                        height: 70,
+                        backgroundColor: const Color(0xFF4CAF50), // Bright green
+                        foregroundColor: Colors.white,
                         onPressed: () async {
                           game.gameManager.selectCharacter(character);
+                          // Save character selection
+                          if (game.saveManager.isInitialized) {
+                            game.saveManager.saveLastSelectedCharacter(character.name);
+                          }
+                          // Log character selection
+                          game.analytics.logCharacterSelected(character.name);
                           game.setLevel();
                         },
-                        style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(
-                            const Size(100, 50),
-                          ),
-                          textStyle: MaterialStateProperty.all(
-                              Theme.of(context).textTheme.titleLarge),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'START!',
+                              style: TextStyle(
+                                fontFamily: 'MinecraftEvenings',
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            Image.asset(
+                              AssetPaths.nextButton,
+                              height: 40,
+                              width: 40,
+                            ),
+                          ],
                         ),
-                        child: const Text('Next'),
                       ),
                     ),
                   ],
@@ -132,62 +187,6 @@ class _MainMenuOverlayState extends State<MainMenuOverlay> {
           ),
         );
       },
-    );
-  }
-}
-
-class CharacterButton extends StatelessWidget {
-  const CharacterButton(
-      {super.key,
-      required this.character,
-      this.selected = false,
-      required this.onSelectChar,
-      required this.characterWidth});
-
-  final Character character;
-  final bool selected;
-  final void Function() onSelectChar;
-  final double characterWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: (selected)
-          ? ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(31, 64, 195, 255)))
-          : null,
-      onPressed: onSelectChar,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/Main Characters/${character.name}/Jump (96x96).png',
-              height: 100,
-              width: 100,
-            ),
-            const WhiteSpace(height: 18),
-            Text(
-              character.name,
-              style: const TextStyle(fontSize: 20),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WhiteSpace extends StatelessWidget {
-  const WhiteSpace({super.key, this.height = 100});
-
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
     );
   }
 }

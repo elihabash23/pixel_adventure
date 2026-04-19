@@ -5,12 +5,15 @@ import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
-import 'package:pixel_adventure/components/chicken.dart';
+import 'package:pixel_adventure/components/enemies/chicken.dart';
+import 'package:pixel_adventure/components/enemies/snail.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/custom_hitbox.dart';
 import 'package:pixel_adventure/components/fruit.dart';
 import 'package:pixel_adventure/components/saw.dart';
 import 'package:pixel_adventure/components/utils.dart';
+import 'package:pixel_adventure/constants/asset_paths.dart';
+import 'package:pixel_adventure/constants/game_constants.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
 enum PlayerState {
@@ -30,12 +33,11 @@ class Player extends SpriteAnimationGroupComponent
     with HasGameRef<PixelAdventure>, KeyboardHandler, CollisionCallbacks {
   Player({
     position,
-    //this.character = "Ninja Frog", // default character
     required this.character,
   }) : super(position: position, priority: 1);
   Character character;
 
-  final double stepTime = 0.05;
+  final double stepTime = AnimationConstants.stepTime;
   late final SpriteAnimation idleAnimation;
   late final SpriteAnimation runningAnimation;
   late final SpriteAnimation jumpingAnimation;
@@ -47,13 +49,13 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation appearingAnimation;
   late final SpriteAnimation disappearingAnimation;
 
-  final double _gravity = 9.8;
-  final double _jumpForce = 260;
-  final double _terminalVelocity = 300;
+  final double _gravity = GamePhysics.gravity;
+  final double _jumpForce = GamePhysics.jumpForce;
+  final double _terminalVelocity = GamePhysics.terminalVelocity;
   int jumpCount = 0;
-  int maxJumpps = 2;
+  int maxJumps = PlayerConstants.maxJumps;
   double horizontalMovement = 0;
-  double moveSpeed = 100;
+  double moveSpeed = PlayerConstants.moveSpeed;
   Vector2 startingPosition = Vector2.zero();
   Vector2 velocity = Vector2.zero();
   bool isOnGround = false;
@@ -70,13 +72,12 @@ class Player extends SpriteAnimationGroupComponent
     height: 28,
   );
 
-  double fixedDeltaTime = 1 / 60; // targeting 60fps
+  double fixedDeltaTime = PlayerConstants.fixedDeltaTime;
   double accumulatedTime = 0;
 
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    //debugMode = true;
     startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
         position: Vector2(hitbox.offsetX, hitbox.offsetY),
@@ -87,6 +88,12 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void update(double dt) {
     accumulatedTime += dt;
+
+    // Cap accumulated time to prevent death spiral on long frames (e.g., device sleep)
+    final maxAccumulatedTime = fixedDeltaTime * 5; // Max 5 physics frames per update
+    if (accumulatedTime > maxAccumulatedTime) {
+      accumulatedTime = maxAccumulatedTime;
+    }
 
     while (accumulatedTime >= fixedDeltaTime) {
       if (!gotHit && !reachedCheckpoint) {
@@ -102,7 +109,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   @override
-  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+  bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     horizontalMovement = 0;
     final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyA) ||
         keysPressed.contains(LogicalKeyboardKey.arrowLeft);
@@ -128,6 +135,7 @@ class Player extends SpriteAnimationGroupComponent
         game.gameManager.loseLife();
       }
       if (other is Chicken) other.collidedWithPlayer();
+      if (other is Snail) other.collidedWithPlayer();
       if (other is Checkpoint && !reachedCheckpoint) _reachedCheckpoint();
     }
     super.onCollisionStart(intersectionPoints, other);
@@ -207,7 +215,7 @@ class Player extends SpriteAnimationGroupComponent
 
     // check if jumping, set to jumping
     if (velocity.y < 0) {
-      if (jumpCount == maxJumpps || isOnWall) {
+      if (jumpCount == maxJumps || isOnWall) {
         playerState = PlayerState.doubleJumping;
       } else {
         playerState = PlayerState.jumping;
@@ -218,23 +226,16 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updatePlayerMovement(double dt) {
-    // if (hasJumped && isOnWall) {
-    //   jumpCount = 0;
-    //   _playerJump(dt);
-    // }
-    if (hasJumped && ((isOnGround || isOnWall) || (velocity.y != 0 && jumpCount < maxJumpps))) {
+    if (hasJumped && ((isOnGround || isOnWall) || (velocity.y != 0 && jumpCount < maxJumps))) {
       _playerJump(dt);
     }
-
-    // optional to prevent jumping when falling (NOT from jumping)
-    //if (velocity.y > _gravity) isOnGround = false;
 
     velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
 
   void _playerJump(double dt) {
-    if (game.playSounds) FlameAudio.play('jump.wav', volume: game.soundVolume);
+    if (game.playSounds) FlameAudio.play(AssetPaths.jumpSound, volume: game.soundVolume);
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
     jumpCount++;
@@ -243,7 +244,17 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _checkHorizontalCollisions(double dt) {
-    for (final block in collisionBlocks) {
+    // Reset wall state before checking collisions
+    isOnWall = false;
+
+    // Only check blocks that are near the player (spatial optimization)
+    // Use center-to-center distance to correctly handle wide/tall blocks like the floor/ceiling
+    final nearbyBlocks = collisionBlocks.where((block) {
+      return ((block.x + block.width / 2) - position.x).abs() < CollisionConstants.spatialCheckRadius &&
+             ((block.y + block.height / 2) - position.y).abs() < CollisionConstants.spatialCheckRadius;
+    });
+
+    for (final block in nearbyBlocks) {
       // handle collision
       if (!block.isPlatform) {
         if (block.isWall) {
@@ -251,7 +262,7 @@ class Player extends SpriteAnimationGroupComponent
             // going right
             if (velocity.x > 0) {
               velocity.x = 0;
-              position.x = block.x - hitbox.offsetX - hitbox.width;
+              position.x = block.x - hitbox.offsetX - hitbox.width - 0.01;
               isOnWall = true;
               jumpCount = 0;
               break;
@@ -259,28 +270,24 @@ class Player extends SpriteAnimationGroupComponent
             // going left
             if (velocity.x < 0) {
               velocity.x = 0;
-              position.x = block.x + block.width + hitbox.width + hitbox.offsetX;
+              position.x = block.x + block.width + hitbox.width + hitbox.offsetX + 0.01;
               isOnWall = true;
               jumpCount = 0;
               break;
             }
           }
-          // need to revert back after touching a wall
-          //jumpCount = 0;
-          isOnWall = false;
         } else {
           if (checkCollision(this, block)) {
             // going right
             if (velocity.x > 0) {
               velocity.x = 0;
-              position.x = block.x - hitbox.offsetX - hitbox.width;
+              position.x = block.x - hitbox.offsetX - hitbox.width - 0.01;
               break;
             }
             // going left
             if (velocity.x < 0) {
               velocity.x = 0;
-              position.x =
-                  block.x + block.width + hitbox.width + hitbox.offsetX;
+              position.x = block.x + block.width + hitbox.width + hitbox.offsetX + 0.01;
               break;
             }
           }
@@ -291,16 +298,23 @@ class Player extends SpriteAnimationGroupComponent
 
   void _applyGravity(double dt) {
     if (velocity.y > 0 && isOnWall) {
-      velocity.y += _gravity / 5;
+      velocity.y += _gravity * GamePhysics.wallGravityMultiplier;
     } else {
       velocity.y += _gravity;
     }
-    velocity.y.clamp(-_jumpForce, _terminalVelocity);
+    velocity.y = velocity.y.clamp(-_jumpForce, _terminalVelocity);
     position.y += velocity.y * dt;
   }
 
   void _checkVerticalCollisions() {
-    for (final block in collisionBlocks) {
+    // Only check blocks that are near the player (spatial optimization)
+    // Use center-to-center distance to correctly handle wide/tall blocks like the floor/ceiling
+    final nearbyBlocks = collisionBlocks.where((block) {
+      return ((block.x + block.width / 2) - position.x).abs() < CollisionConstants.spatialCheckRadius &&
+             ((block.y + block.height / 2) - position.y).abs() < CollisionConstants.spatialCheckRadius;
+    });
+
+    for (final block in nearbyBlocks) {
       if (block.isPlatform) {
         // handle platforms
         if (checkCollision(this, block)) {
@@ -333,22 +347,26 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _respawn() async {
-    if (game.playSounds) FlameAudio.play('hit.wav', volume: game.soundVolume);
-    const canMoveDuration = Duration(milliseconds: 200); // random value
+    if (game.playSounds) FlameAudio.play(AssetPaths.hitSound, volume: game.soundVolume);
+    const canMoveDuration = Duration(milliseconds: PlayerConstants.canMoveDurationMs);
     gotHit = true;
     current = PlayerState.hit;
 
-    await animationTicker?.completed;
-    animationTicker?.reset();
+    if (animationTicker != null) {
+      await animationTicker!.completed;
+      animationTicker!.reset();
+    }
 
     scale.x = 1; // always face the right
 
     // 96 - 64 (appearing animation is greater than player animation)
-    position = startingPosition - Vector2.all(32);
+    position = startingPosition - Vector2.all(PlayerConstants.respawnAnimationOffset);
     current = PlayerState.appearing;
 
-    await animationTicker?.completed;
-    animationTicker?.reset();
+    if (animationTicker != null) {
+      await animationTicker!.completed;
+      animationTicker!.reset();
+    }
 
     velocity = Vector2.zero();
     position = startingPosition;
@@ -360,37 +378,41 @@ class Player extends SpriteAnimationGroupComponent
 
   void _reachedCheckpoint() async {
     if (game.playSounds) {
-      FlameAudio.play('disappear.wav', volume: game.soundVolume);
+      FlameAudio.play(AssetPaths.disappearSound, volume: game.soundVolume);
     }
     reachedCheckpoint = true;
     if (scale.x > 0) {
       // facing to the right
-      position = position - Vector2.all(32);
+      position = position - Vector2.all(PlayerConstants.checkpointAnimationOffset);
     } else if (scale.x < 0) {
       // facing to the left
-      position = position + Vector2(32, -32);
+      position = position + Vector2(PlayerConstants.checkpointAnimationOffset, -PlayerConstants.checkpointAnimationOffset);
     }
 
     current = PlayerState.disappearing;
 
-    await animationTicker?.completed;
-    animationTicker?.reset();
+    if (animationTicker != null) {
+      await animationTicker!.completed;
+      animationTicker!.reset();
+    }
 
     reachedCheckpoint = false;
     position = Vector2.all(-640); // off screen
 
-    const waitToChangeDuration = Duration(seconds: 3);
+    const waitToChangeDuration = Duration(seconds: PlayerConstants.checkpointWaitDurationSec);
     Future.delayed(waitToChangeDuration, () {
-      // switch level
-      game.loadNextLevel();
+      // Only switch level if still playing and haven't been hit/respawned
+      if (game.gameManager.isPlaying && !gotHit) {
+        game.loadNextLevel();
+      }
     });
   }
 
   void collidedWithEnemy() {
+    game.gameManager.loseLife();
     if (game.gameManager.livesRemaining.value == 0) {
       game.onLose();
     } else {
-      game.gameManager.loseLife();
       _respawn();
     }
   }

@@ -1,14 +1,13 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 import 'package:pixel_adventure/widgets/overlays/game_over_overlay.dart';
 import 'package:pixel_adventure/widgets/overlays/game_overlay.dart';
 import 'package:pixel_adventure/widgets/overlays/level_overlay.dart';
 import 'package:pixel_adventure/widgets/overlays/main_menu_overlay.dart';
-
-PixelAdventure game = PixelAdventure();
+import 'package:pixel_adventure/widgets/overlays/pause_overlay.dart';
+import 'package:pixel_adventure/widgets/overlays/the_end_overlay.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,24 +48,19 @@ class _MyHomePageState extends State<MyHomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: LayoutBuilder(builder: (context, constraints) {
-          return Container(
-            constraints: const BoxConstraints(
-              minWidth: 550,
-              maxWidth: 1000//800
-            ),
-            child: GameWidget(
-              game: kDebugMode ? PixelAdventure() : game,
-              overlayBuilderMap: <String, Widget Function(BuildContext, Game)> {
-                'mainMenuOverlay': (context, game) => MainMenuOverlay(game),
-                'gameOverlay': (context, game) => GameOverlay(game),
-                'gameOverOverlay': (context, game) => GameOverOverlay(game),
-                'levelOverlay': (context, game) => LevelOverlay(game),
-              }
-            ),
-          );
-        }),
+      backgroundColor: const Color.fromARGB(255, 255, 194, 0), // Match game background
+      body: SafeArea(
+        child: GameWidget(
+          game: PixelAdventure(),
+          overlayBuilderMap: <String, Widget Function(BuildContext, Game)> {
+            'mainMenuOverlay': (context, game) => MainMenuOverlay(game),
+            'gameOverlay': (context, game) => GameOverlay(game),
+            'gameOverOverlay': (context, game) => GameOverOverlay(game),
+            'levelOverlay': (context, game) => LevelOverlay(game),
+            'pauseOverlay': (context, game) => PauseOverlay(game),
+            'theEndOverlay': (context, game) => TheEndOverlay(game),
+          }
+        ),
       ),
     );
   }

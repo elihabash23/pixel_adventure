@@ -12,7 +12,7 @@ class BackgroundTile extends ParallaxComponent with HasGameRef {
 
   @override
   FutureOr<void> onLoad() async {
-    debugMode = true;
+    //debugMode = true;
     priority = -10;
     size = Vector2.all(64);
     parallax = await gameRef.loadParallax(

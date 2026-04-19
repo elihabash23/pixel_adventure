@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-04.tmx",
+    "activeFile": "Level-02.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -34,14 +34,14 @@
         },
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                4,
-                3
+                3,
+                4
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1.4779,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 317,
-                "y": 181.33333333333334
+                "x": 323.0935787265715,
+                "y": 209.41876987617565
             }
         },
         "Level-02.tmx": {
@@ -52,8 +52,8 @@
             "scale": 1.5136,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 347.1855179704017,
-                "y": 216.04122621564483
+                "x": 317.4550739957716,
+                "y": 232.8884778012685
             }
         },
         "Level-02.tmx.bak.tmx": {
@@ -72,8 +72,8 @@
             "scale": 1.548,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 270.34883720930236,
-                "y": 185.40051679586563
+                "x": 314.92248062015506,
+                "y": 239.98708010335918
             }
         },
         "Level-04.tmx": {
@@ -84,60 +84,168 @@
             "scale": 1.6414,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 314.6704033142439,
-                "y": 196.78323382478374
+                "x": 320.1535274765444,
+                "y": 184.2938954550993
+            }
+        },
+        "Level-05.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.4351,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 325.0644554386454,
+                "y": 210.0898892063271
+            }
+        },
+        "Level-06.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.30217186024555,
+                "y": 208.97569703295065
+            }
+        },
+        "Level-07.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.30217186024555,
+                "y": 183.52964564385465
+            }
+        },
+        "Level-08.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.30217186024555,
+                "y": 183.52964564385465
+            }
+        },
+        "Level-09.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.30217186024555,
+                "y": 183.52964564385465
+            }
+        },
+        "Level-09.tmx.bak.tmx": {
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.30217186024555,
+                "y": 183.8477212862184
+            }
+        },
+        "Level-10.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 1.571953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 329.84444113115654,
+                "y": 187.34655335221905
             }
         },
         "Pixel Adventure.tsx": {
             "scaleInDock": 1.0396,
             "scaleInEditor": 1
         },
+        "Terrain (amber).tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Text (White).tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
-        "template.tmx": {
-            "expandedObjectLayers": [
-                2,
-                3
-            ],
-            "scale": 1.53,
+        "TheEnd.tmx": {
+            "scale": 1.571953125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 312.7450980392157,
-                "y": 196.078431372549
+                "x": 320.30217186024555,
+                "y": 184.1657969285821
+            }
+        },
+        "amber.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "template copy.tmx": {
+            "scale": 1.5689843749999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.2708758651596,
+                "y": 184.19558830851963
+            }
+        },
+        "template.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1.57,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.0636942675159,
+                "y": 183.75796178343947
             }
         }
     },
     "last.externalTilesetPath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Menu/Text",
     "last.imagePath": "/Users/ehabash/development/myflutterapps/pixel_adventure/assets/images/Terrain",
-    "map.height": 23,
+    "map.height": 2,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
-    "map.width": 40,
+    "map.width": 10,
     "openFiles": [
         "Pixel Adventure.tsx",
+        "TheEnd.tmx",
+        "template.tmx",
         "Level-01.tmx",
         "Level-02.tmx",
-        "Level-03.tmx",
+        "Level-06.tmx",
+        "Level-07.tmx",
+        "Level-09.tmx",
+        "Level-10.tmx",
         "Level-04.tmx",
-        "template.tmx",
-        "Text (White).tsx"
+        "Level-05.tmx",
+        "Level-08.tmx",
+        "Level-03.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "property.type": "string",
     "recentFiles": [
         "Pixel Adventure.tsx",
-        "Level-01.tmx",
-        "Level-02.tmx",
-        "Level-03.tmx",
-        "Text (White).tsx",
+        "TheEnd.tmx",
         "template.tmx",
+        "Level-01.tmx",
+        "Level-03.tmx",
+        "Level-08.tmx",
+        "Level-05.tmx",
         "Level-04.tmx",
-        "Level-02.tmx.bak.tmx",
-        "/Users/ehabash/Downloads/pixel_adventure-master/assets/tiles/Level-01.tmx",
-        "Level-01 copy.tmx"
+        "Level-10.tmx",
+        "Level-09.tmx",
+        "Level-07.tmx",
+        "Level-06.tmx"
     ],
     "tileset.lastUsedFilter": "All Files (*)",
     "tileset.lastUsedFormat": "tsx",

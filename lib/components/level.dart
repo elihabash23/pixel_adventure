@@ -4,7 +4,8 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:pixel_adventure/components/background_tile.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
-import 'package:pixel_adventure/components/chicken.dart';
+import 'package:pixel_adventure/components/enemies/chicken.dart';
+import 'package:pixel_adventure/components/enemies/snail.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/fruit.dart';
 import 'package:pixel_adventure/components/player.dart';
@@ -63,9 +64,9 @@ class Level extends World with HasGameRef<PixelAdventure> {
             add(fruit);
             break;
           case 'Saw':
-            final isVertical = spawnPoint.properties.getValue('isVertical');
-            final offNeg = spawnPoint.properties.getValue('offNeg');
-            final offPos = spawnPoint.properties.getValue('offPos');
+            final isVertical = spawnPoint.properties.getValue('isVertical') as bool? ?? false;
+            final offNeg = spawnPoint.properties.getValue('offNeg') as double? ?? 0.0;
+            final offPos = spawnPoint.properties.getValue('offPos') as double? ?? 0.0;
             final saw = Saw(
               isVertical: isVertical,
               offNeg: offNeg,
@@ -86,10 +87,19 @@ class Level extends World with HasGameRef<PixelAdventure> {
             final chicken = Chicken(
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
-              offNeg: spawnPoint.properties.getValue('offNeg'),
-              offPos: spawnPoint.properties.getValue('offPos'),
+              offNeg: spawnPoint.properties.getValue('offNeg') as double? ?? 0.0,
+              offPos: spawnPoint.properties.getValue('offPos') as double? ?? 0.0,
             );
             add(chicken);
+            break;
+          case 'Snail':
+            final snail = Snail(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: spawnPoint.properties.getValue('offNeg') as double? ?? 0.0,
+              offPos: spawnPoint.properties.getValue('offPos') as double? ?? 0.0,
+            );
+            add(snail);
             break;
           default:
         }
@@ -119,6 +129,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
             );
             collisionBlocks.add(wall);
             add(wall);
+            break;
           default:
             final block = CollisionBlock(
               position: Vector2(collision.x, collision.y),
