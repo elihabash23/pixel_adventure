@@ -27,7 +27,6 @@ class Snail extends SpriteAnimationGroupComponent
   static const tileSize = CollisionConstants.tileSize;
   static const _walkSpeed = EnemyConstants.snailWalkSpeed;
   static const _bounceHeight = GamePhysics.snailBounceHeight;
-  //static const _shellInvulnerableDuration = 2.0; // seconds
 
   final textureSize = Vector2(38, 24);
 
