@@ -15,6 +15,7 @@ class Chicken extends SpriteAnimationGroupComponent
     with HasGameReference<PixelAdventure>, CollisionCallbacks {
   final double offNeg;
   final double offPos;
+  
   Chicken({
     super.position,
     super.size,

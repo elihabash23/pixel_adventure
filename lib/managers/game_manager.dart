@@ -4,7 +4,7 @@ import 'package:pixel_adventure/pixel_adventure.dart';
 
 enum GameState { intro, playing, gameOver, pickLevel, paused, theEnd }
 
-class GameManager extends Component with HasGameRef<PixelAdventure> {
+class GameManager extends Component with HasGameReference<PixelAdventure> {
   GameManager();
 
   Character character = Character.maskDude;

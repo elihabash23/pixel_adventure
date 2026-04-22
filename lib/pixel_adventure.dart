@@ -29,7 +29,7 @@ class PixelAdventure extends FlameGame
   CameraComponent? cam;
   Level? _currentLevel;
   late Player player;
-  Character character = Character.pinkMan;
+  Character character = Character.maskDude;
   GameManager gameManager = GameManager();
   late JoystickComponent joystick;
   bool showControls = kIsWeb ? false : (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);

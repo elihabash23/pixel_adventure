@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:pixel_adventure/components/player.dart';
+import 'package:pixel_adventure/constants/asset_paths.dart';
 import 'package:pixel_adventure/constants/game_constants.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
-import 'package:flame_audio/flame_audio.dart';
-import 'package:pixel_adventure/constants/asset_paths.dart';
 
 enum SnailState { idle, walk, hit, shellIdle, shellWallHit, shellTopHit, snailWithoutShell }
 
